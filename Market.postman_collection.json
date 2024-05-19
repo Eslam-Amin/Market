@@ -1,0 +1,1568 @@
+{
+	"info": {
+		"_postman_id": "19daa5a8-9f3c-4f90-a03e-4f5f9ca85499",
+		"name": "Market",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23525113"
+	},
+	"item": [
+		{
+			"name": "Version 1",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Admin-Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"jwt\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"eslam@gmail.com\",\r\n    \"password\":\"ecajust1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}users/admin-login",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"admin-login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cashier-Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"jwt\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"eca@gmail.com\",\r\n    \"password\":\"ecajust1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}users/cashier-login",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"cashier-login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Create Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"pomegranate\",\r\n    \"price\":3,\r\n    \"category\":\"fruit\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Products",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-name",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product",
+							"request": {
+								"auth": {
+									"type": "jwt",
+									"jwt": [
+										{
+											"key": "algorithm",
+											"value": "HS256",
+											"type": "string"
+										},
+										{
+											"key": "isSecretBase64Encoded",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "payload",
+											"value": "{}",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "queryParamKey",
+											"value": "token",
+											"type": "string"
+										},
+										{
+											"key": "header",
+											"value": "{}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products/6647bbca480a3ee3c898e7de",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"6647bbca480a3ee3c898e7de"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "3",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/products/6647bbd5480a3ee3c898e7e1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"6647bbd5480a3ee3c898e7e1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products/6647c0e7480a3ee3c898e843",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"6647c0e7480a3ee3c898e843"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Branches",
+					"item": [
+						{
+							"name": "Create New Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Carrefour\",\r\n    \"address\":\"El Obour\",\r\n    \"phone\":\"196606\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/branches/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Branches",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDc5YTE4ZTUxMTFjZGY1N2FiYzJiNCIsImlhdCI6MTcxNTk3MTAxMSwiZXhwIjoxNzE2NDAzMDExfQ.3q_aIOspr4t6hHbiz8W5TZ3pwg0dDxa02cS20imavVo",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/branches",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/branches/6647a83ee333167f0d0c9737",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										"6647a83ee333167f0d0c9737"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/branches/66479766c7045816d66eb956",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										"66479766c7045816d66eb956"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/branches/6647a7b71b1ee35c90e89311",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										"6647a7b71b1ee35c90e89311"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cashiers",
+					"item": [
+						{
+							"name": "Get All Cashiers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "eslam@gmail.com",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "eca@gmail.cm",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers/6647a7d41b1ee35c90e89314",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers",
+										"6647a7d41b1ee35c90e89314"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ecaam/Downloads/eslam.jpeg"
+										},
+										{
+											"key": "name",
+											"value": "ECa AmiNOo",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/users/cashiers/6647cda448f549de26efa797",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers",
+										"6647cda448f549de26efa797"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers/6648baad13b0eda1cb82c050",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers",
+										"6648baad13b0eda1cb82c050"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Top Cashiers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers/top-3-cashiers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers",
+										"top-3-cashiers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register-Cashier",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Kareem Hassan",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kareem@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ecaam/Downloads/BusinessPeopleAvatarIcons.jpg"
+										},
+										{
+											"key": "password",
+											"value": "ecajust1",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "ecajust1",
+											"type": "text"
+										},
+										{
+											"key": "branch",
+											"value": "6647a83ee333167f0d0c9737",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/users/cashiers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Receipts",
+					"item": [
+						{
+							"name": "Create Receipt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"items\":[\r\n       {\r\n        \"name\":\"potato\",\r\n        \"quantity\":6\r\n        }\r\n    ]\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/receipts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"receipts"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-name",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Receipts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/receipts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"receipts"
+									],
+									"query": [
+										{
+											"key": "branch",
+											"value": "6647a83ee333167f0d0c9737",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "fruit",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Version 2",
+			"item": [
+				{
+					"name": "Cashiers",
+					"item": [
+						{
+							"name": "Get Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers/2",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Cashiers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/users/cashiers?branch=1004",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "branch",
+											"value": "1004"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v2/users/cashiers/6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v2",
+										"users",
+										"cashiers",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cashier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ecaam/Downloads/Back-End Position Challenge - NEON.pdf",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ecaam/Downloads/Back-End Position Challenge - NEON.pdf",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}users/cashiers/7",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"cashiers",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register-Cashier",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Moamen Sayed\",\r\n    \"email\":\"mo@gmail.com\",\r\n    \"password\":\"ecajust1\",\r\n    \"branch\":1003\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/cashiers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashiers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Admin-Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"jwt\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"eslam@gmail.com\",\r\n    \"password\":\"ecajust1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/admin-login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"admin-login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cashier-Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"jwt\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"ahmed@gmail.com\",\r\n    \"password\":\"ecajust1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/cashier-login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"cashier-login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Branches",
+					"item": [
+						{
+							"name": "Create New Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Seodi\",\r\n    \"phone\":\"18620\",\r\n    \"address\":\"El Tagamoaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}branches",
+									"host": [
+										"{{URL}}branches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Branches",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/branches",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}branches/1002",
+									"host": [
+										"{{URL}}branches"
+									],
+									"path": [
+										"1002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/branches/1003",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										"1003"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Branch",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Carfour\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/branches/1003",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"branches",
+										"1003"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Create Multiple Products",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"products\":[\r\n        {\r\n            \"name\": \"banana\",\r\n            \"price\": 1,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"apple\",\r\n            \"price\": 2.5,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"guava\",\r\n            \"price\": 2.5,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"mango\",\r\n            \"price\": 5,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"product-mango.png\"\r\n            },\r\n            {\r\n            \"name\": \"strawberry\",\r\n            \"price\": 3,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"kiwi\",\r\n            \"price\": 3,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"tomato\",\r\n            \"price\": 3,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"carrot\",\r\n            \"price\": 2.5,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"onion\",\r\n            \"price\": 1.5,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"potato\",\r\n            \"price\": 2,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"beets\",\r\n            \"price\": 2,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"green peas\",\r\n            \"price\": 3,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"mushroom\",\r\n            \"price\": 4,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"broccoli\",\r\n            \"price\": 3,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"cerely\",\r\n            \"price\": 1.5,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"corn\",\r\n            \"price\": 1.5,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"leeks\",\r\n            \"price\": 1.5,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"pumpkin\",\r\n            \"price\": 4,\r\n            \"category\": \"vegetable\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"cherries\",\r\n            \"price\": 4,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"watermelon\",\r\n            \"price\": 5,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"orange\",\r\n            \"price\": 4,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"grapes\",\r\n            \"price\": 3,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"cantaloupe\",\r\n            \"price\": 4,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"avocado\",\r\n            \"price\": 6,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"raspberry\",\r\n            \"price\": 4,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"pear\",\r\n            \"price\": 4,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n            },\r\n            {\r\n            \"name\": \"pomegranate\",\r\n            \"price\": 3,\r\n            \"category\": \"fruit\",\r\n            \"image\": \"\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/multiple",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"multiple"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create New Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products/52",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"52"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "100",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "banana",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "vegetable",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/products/50",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"50"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updated Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\":\"asdasd.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/52",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"52"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Receipts",
+					"item": [
+						{
+							"name": "Create New Receipt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"products\":[\r\n        {\r\n            \"name\":\"mango\",\r\n            \"price\":5,\r\n            \"category\":\"fruit\",\r\n            \"quantity\":2\r\n        },\r\n        {\r\n            \"name\":\"guava\",\r\n            \"price\":2.5,\r\n            \"category\":\"fruit\",\r\n            \"quantity\":4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/receipts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"receipts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Receipts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/receipts?branch=1003&cashier=2",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"receipts"
+									],
+									"query": [
+										{
+											"key": "branch",
+											"value": "1003"
+										},
+										{
+											"key": "cashier",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
