@@ -1,5 +1,4 @@
 
-
 # Market Documentation
 
 Welcome to the Market API repository. Below you'll find documentation on the API endpoints, setup instructions, databases used, and middleware employed.
@@ -73,6 +72,9 @@ Two types of error handlers are implemented:
 
 6. **APIFeatures-v2:**
    - Performs the same functionalities as APIFeatures but with a MySQL database.
+
+7. **jsonwebtoken (JWT):**
+   - Created a security layer with JWT to ensure routes are only accessible to authenticated and authorized users.
 
 ## Future Work
 
