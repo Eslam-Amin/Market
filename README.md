@@ -37,8 +37,8 @@ To run the code:
 ## Databases
 
 - Online MongoDB (Atlas) is used. Details are provided in the `.env` file.
-- XAMPP is used locally to connect to the MySQL database. The exported database exists in the specified path.
-Certainly, here's the updated section:
+- XAMPP is used locally to connect to the MySQL database. The exported database exists in the specified path:
+  - Path: [marketMySQL.sql](https://github.com/Eslam-Amin/Market/blob/main/marketMySQL.sql)
 
 ## Middlewares
 
@@ -71,3 +71,12 @@ Two types of error handlers are implemented:
 
 6. **APIFeatures-v2:**
    - Performs the same functionalities as APIFeatures but with a MySQL database.
+
+## Future Work
+
+To enhance the project further, consider the following:
+
+- **Integration of ORM like Prisma:**
+  - Consider adding an ORM layer like Prisma to simplify database interactions, especially with MySQL.
+  - Prisma offers a modern database toolkit that makes it easy to handle CRUD operations and manage database schemas.
+  - Integration of Prisma can streamline database interactions and improve code maintainability.
