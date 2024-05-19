@@ -12,6 +12,8 @@ In the Postman collection, you'll find five folders:
 2. **Products, Branches, Cashiers:** These folders house endpoints for CRUD operations under the supervision of the Admin for Products, Branches, and Cashiers.
 3. **Receipts:** Only cashiers can create receipts.
 
+You can test the APIs using the provided Postman collection. Download it [here](https://github.com/Eslam-Amin/Market/blob/main/Market.postman_collection.json).
+
 ## API Versions
 
 Two versions of the API exist with the same endpoints:
