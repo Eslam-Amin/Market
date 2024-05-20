@@ -22,7 +22,21 @@ class APIFeatures {
         this.query = this.query.find(queryStr);
         return this;
     }
+    filterOnMultiLevelDocument() {
+        //Advanced Fitlering
 
+        //hard Copy
+        const queryObj = { ...this.queryString };
+        const excludedFields = ["page", "sort", "limit", "fields"]
+
+        //filtering
+        excludedFields.forEach(el => delete queryObj[el]);
+
+        this.query = this.query.find({ items: { $elemMatch: queryObj } });
+
+        return this
+
+    }
     sort() {
         if (this.queryString.sort) {
             const sortBy = this.queryString.sort.split(",").join(" ");

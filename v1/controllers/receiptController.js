@@ -17,6 +17,7 @@ const getTotalAmount = (items, productItems, next) => {
                         name: bodyItem.name,
                         quantity: bodyItem.quantity,
                         price: item.price,
+                        category: item.category,
                         itemTotalPrice: item.price * bodyItem.quantity
                     })
                     totalAmount += (item.price * bodyItem.quantity)
@@ -38,7 +39,10 @@ const createReceipt = catchAsync(async (req, res, next) => {
         return next(new AppError("You can't create a receipt without Items", 400))
     let productNames = items.map((item) => item.name);
 
-    let productItems = await Product.find({ name: { $in: productNames } }).select("name price -_id")
+    let productItems = await Product.find({ name: { $in: productNames } }).select("name category price -_id")
+    if (productItems.length === 0)
+        return next(new AppError("there is no product with that name"))
+
     const receitDetails = getTotalAmount(items, productItems, next);
     const totalAmount = receitDetails.totalAmount;
     const receiptItems = receitDetails.receiptItems;
@@ -61,10 +65,12 @@ const getAllReceipts = catchAsync(async (req, res, next) => {
         .sort()
         .limitFields()
         .paginate()
+    const page = parseInt(req.query.page) || 1;
+
     const receipts = await features.query;
     if (receipts.length === 0)
         return next(new AppError("No Receipts found with these Criteria", 404))
-    res.success({ statusCode: 200, data: { receipts }, result: receipts.length })
+    res.success({ statusCode: 200, data: { receipts }, page, result: receipts.length })
 
 })
 
