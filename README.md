@@ -42,29 +42,30 @@ Two types of error handlers are implemented:
 
 ### Implemented Middlewares:
 
-1. **mongoSanitize():**
+1.**jsonwebtoken (JWT):**
+   - Created a security layer with JWT to ensure routes are only accessible to authenticated and authorized users.
+
+2. **mongoSanitize():**
    - Protects against attacks tampering with database queries.
    - Cleans user input to prevent MongoDB database from malicious code.
 
-2. **xss():**
+3. **xss():**
    - Guards against XSS attacks.
    - Cleans user input to prevent harmful scripts from running in web pages.
 
-3. **hpp():**
+4. **hpp():**
    - Prevents parameter pollution attacks.
    - Limits the number of query parameters a client can send, allowing only specified safe parameters.
 
-4. **Multer():**
+5. **Multer():**
    - Handles file uploads in Node.js web applications.
 
-5. **APIFeatures:**
+6. **APIFeatures:**
    - Generic middleware to handle any kind of filtration, sorting on the data with MongoDB.
 
-6. **APIFeatures-v2:**
+7. **APIFeatures-v2:**
    - Performs the same functionalities as APIFeatures but with a MySQL database.
 
-7. **jsonwebtoken (JWT):**
-   - Created a security layer with JWT to ensure routes are only accessible to authenticated and authorized users.
 
 
 ## Examples of POST Requests
@@ -141,7 +142,7 @@ In the Postman collection, you'll find five folders:
 
 
 1. **Auth:** Contains endpoints for user login.
-2. **Products, Branches, Cashiers:** These folders house endpoints for CRUD operations under the supervision of the Admin for Products, Branches, and Cashiers.
+2. **Products, Branches, Cashiers:** These folders house endpoints for CRUD operations under the supervision of the Admin.
 3. **Receipts:** Only cashiers can create receipts.
 
 
