@@ -16,10 +16,13 @@ const registerReceipt = catchAsync(async (req, res, next) => {
     const cashier = req.cashier;
 
     products.forEach((product) => {
-        //totalPrice += product.price;
-        product.receiptTotalPrice = product.price * product.quantity
-        product.cashier = cashier.id
-        product.branch = cashier.branch
+        if (product.quantity != 0 || product.price != 0) {
+            product.receiptTotalPrice = product.price * product.quantity
+            product.cashier = cashier.id
+            product.branch = cashier.branch
+        }
+        else
+            return next(new AppError("you have zero value in the price or in the qunatity.", 400))
     })
 
 

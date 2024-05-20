@@ -5,20 +5,28 @@ const catchAsync = require("../../utils/catchAsync")
 const AppError = require("../../utils/appError")
 const ApiFeatures = require("../../utils/apiFeatures");
 
-const getTotalAmount = (items, productItems) => {
+const getTotalAmount = (items, productItems, next) => {
     let receiptItems = [];
     let totalAmount = 0;
     productItems.forEach((item) => {
         items.forEach((bodyItem) => {
             if (bodyItem.name === item.name) {
-                receiptItems.push({
-                    name: bodyItem.name,
-                    quantity: bodyItem.quantity,
-                    price: item.price,
-                    itemTotalPrice: item.price * bodyItem.quantity
-                })
-                totalAmount += (item.price * bodyItem.quantity)
+                if (bodyItem.quantity != 0) {
+                    console.log(bodyItem.quantity != 0)
+                    receiptItems.push({
+                        name: bodyItem.name,
+                        quantity: bodyItem.quantity,
+                        price: item.price,
+                        itemTotalPrice: item.price * bodyItem.quantity
+                    })
+                    totalAmount += (item.price * bodyItem.quantity)
+                }
+                else
+                    return next(new AppError(`you have 0 value in the qunatity of the ${bodyItem.name}.`, 400))
+
+
             }
+
         })
     })
     return { totalAmount, receiptItems }
@@ -31,7 +39,7 @@ const createReceipt = catchAsync(async (req, res, next) => {
     let productNames = items.map((item) => item.name);
 
     let productItems = await Product.find({ name: { $in: productNames } }).select("name price -_id")
-    const receitDetails = getTotalAmount(items, productItems);
+    const receitDetails = getTotalAmount(items, productItems, next);
     const totalAmount = receitDetails.totalAmount;
     const receiptItems = receitDetails.receiptItems;
 
@@ -49,7 +57,7 @@ const createReceipt = catchAsync(async (req, res, next) => {
 
 const getAllReceipts = catchAsync(async (req, res, next) => {
     const features = new ApiFeatures(Receipt.find(), req.query)
-        .filter()
+        .filterOnMultiLevelDocument()
         .sort()
         .limitFields()
         .paginate()
