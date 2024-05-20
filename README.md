@@ -17,7 +17,7 @@ Two versions of the API exist with the same endpoints:
 - `{{URL}}/market/v{versionNo}/products`
 - `{{URL}}/market/v{versionNo}/receipts`
 
-## Prerequisites
+## Pre-requisites
 
 To run the code:
 
