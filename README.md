@@ -42,7 +42,7 @@ Two types of error handlers are implemented:
 
 ### Implemented Middlewares:
 
-1.**jsonwebtoken (JWT):**
+1. **jsonwebtoken (JWT):**
    - Created a security layer with JWT to ensure routes are only accessible to authenticated and authorized users.
 
 2. **mongoSanitize():**
