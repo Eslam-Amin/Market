@@ -1,17 +1,7 @@
 
 # Market Documentation
 
-Welcome to the Market API repository. Below you'll find documentation on the API endpoints, setup instructions, databases used, and middleware employed.
-
-## Postman Collection
-
-In the Postman collection, you'll find five folders:
-
-1. **Auth:** Contains endpoints for user login.
-2. **Products, Branches, Cashiers:** These folders house endpoints for CRUD operations under the supervision of the Admin for Products, Branches, and Cashiers.
-3. **Receipts:** Only cashiers can create receipts.
-
-You can test the APIs using the provided Postman collection. Download it [here](https://github.com/Eslam-Amin/Market/blob/main/Market.postman_collection.json).
+Welcome to the Market API repository. Below you'll find documentation on the API endpoints, setup instructions, databases used, middleware employed, and Examples of post requests.
 
 ## API Versions
 
@@ -75,6 +65,88 @@ Two types of error handlers are implemented:
 
 7. **jsonwebtoken (JWT):**
    - Created a security layer with JWT to ensure routes are only accessible to authenticated and authorized users.
+
+
+## Examples of POST Requests
+
+### Branches
+
+- **Create Branch**
+  - `POST /market/v{versionNo}/branches`
+  - Example Request Body:
+    ```json
+    {
+      "name": "Central Branch",
+      "address": "123 Main St, Springfield",
+      "phone": "555-1234"
+    }
+    ```
+
+### Cashiers
+
+- **Create Cashier**
+  - `POST /market/v{versionNo}/cashiers`
+  - Example Request Body:
+    ```json
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "securePassword123",
+      "image": "base64ImageString",
+      "branch": "Central Branch"
+    }
+    ```
+
+### Products
+
+- **Create Product**
+  - `POST /market/v{versionNo}/products`
+  - Example Request Body:
+    ```json
+    {
+      "name": "Laptop",
+      "category": "Electronics",
+      "price": 1200.99,
+      "image": "base64ImageString"
+    }
+    ```
+
+### Receipts
+
+- **Create Receipt**
+  - `POST /market/v{versionNo}/receipts`
+  - Example Request Body:
+    ```json
+    {
+      "products": [
+        {
+          "name": "Laptop",
+          "price": 1200.99,
+          "category": "Electronics",
+          "quantity": 1
+        },
+        {
+          "name": "Mouse",
+          "price": 25.50,
+          "category": "Accessories",
+          "quantity": 2
+        }
+      ]
+    }
+    ```
+ 
+## Postman Collection
+
+In the Postman collection, you'll find five folders:
+
+
+1. **Auth:** Contains endpoints for user login.
+2. **Products, Branches, Cashiers:** These folders house endpoints for CRUD operations under the supervision of the Admin for Products, Branches, and Cashiers.
+3. **Receipts:** Only cashiers can create receipts.
+
+
+You can test the APIs using the provided Postman collection. Download it [here](https://github.com/Eslam-Amin/Market/blob/main/Market.postman_collection.json).
+
 
 ## Future Work
 
