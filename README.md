@@ -3,6 +3,16 @@
 
 Welcome to the Market API repository. Below you'll find documentation on the API endpoints, setup instructions, databases used, middleware employed, and Examples of post requests.
 
+This repository contains the backend code for a Market System. It provides functionalities to manage branches, cashiers, products, and receipts. The system is protected using JWT, ensuring that only authorized admins can perform CRUD operations, while cashiers can create receipts.
+
+## Features
+
+**CRUD Operations For**:
+- ***Branches***: Admins can create, read, update, and delete branches.
+- ***Cashiers***: Admins can register cashiers to each market branch, and get all the cashiers by Id or by branch, updated cashier data, and delete Cashier.
+- ***Products***: Admins can add products to the market, get, update, and delete any product.
+- **Create Receipts**: Cashiers can create receipts with a list of products and admins can view these Receipts.
+
 ## API Versions
 
 Two versions of the API exist with the same endpoints:
