@@ -8,9 +8,9 @@ This repository contains the backend code for a Market System. It provides funct
 ## Features
 
 **CRUD Operations For**:
-- ***Branches***: Admins can create, read, update, and delete branches.
-- ***Cashiers***: Admins can register cashiers to each market branch, and get all the cashiers by Id or by branch, updated cashier data, and delete Cashier.
-- ***Products***: Admins can add products to the market, get, update, and delete any product.
+- **Branches**: Admins can create, read, update, and delete branches.
+- **Cashiers**: Admins can register cashiers to each market branch, get all the cashiers by id or by branch, update cashier data, and delete Cashier.
+- **Products**: Admins can add products to the market, get, update, and delete any product.
 - **Create Receipts**: Cashiers can create receipts with a list of products and admins can view these Receipts.
 
 ## API Versions
